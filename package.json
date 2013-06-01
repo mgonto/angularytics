@@ -1,0 +1,45 @@
+{
+  "name": "angularytics",
+  "description": "The solution to tracking page views and events in a SPA with AngularJS",
+  "version": "0.1.0",
+  "filename": "angularytics.min.js",
+  "homepage": "https://github.com/mgonto/angularytics",
+  "author": "Martin Gontovnikas <martin@gonto.com.ar>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mgonto/angularytics.git"
+  },
+  "engines": {
+    "node": ">= 0.9"
+  },
+  "keywords": [
+    "angular",
+    "analytics",
+    "page view",
+    "events",
+    "track",
+    "tracking",
+    "spa"
+  ],
+  "maintainers": [
+    {
+      "name": "Martin Gontovnikas",
+      "website": "http://gon.to/"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-cli": ">= 0.1.7",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-bower": "*",
+    "grunt-bower-task": "*",
+    "grunt-karma": "*",
+    "grunt-conventional-changelog": "0.0.12",
+    "grunt-zip": "*"
+  },
+  "scripts": {
+    "test": "grunt test --verbose"
+  }
+}
