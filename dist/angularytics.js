@@ -72,6 +72,11 @@
       var service = {};
       service.trackPageView = function (url) {
         _gaq.push([
+          '_set',
+          'page',
+          url
+        ]);
+        _gaq.push([
           '_trackPageview',
           url
         ]);
