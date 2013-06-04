@@ -78,7 +78,7 @@ You can add your own event handler in 3 wasy steps:
 
 #### Create your service.
 
-You need to create a service with the following name format: `Angularytics[EventHandlerName]Handler`. For example AngularyticsKissmestricsHandler.
+You need to create a service with the following name format: `Angularytics[EventHandlerName]Handler`. For example AngularyticsKissmetricsHandler.
 
 This service must have the following methods and signatures:
 
@@ -90,8 +90,8 @@ Use this newly created service by setting the name in the AngularyticsProvider.
 For example:
 
 ````javascript
-// Considering the service is named AngularyticsKissmestricsHandler
-AngularyticsProvider.setEventHandlers(['Console', 'Kissmestrics']);
+// Considering the service is named AngularyticsKissmetricsHandler
+AngularyticsProvider.setEventHandlers(['Console', 'Kissmetrics']);
 ````
 
 #### Have fun using it
