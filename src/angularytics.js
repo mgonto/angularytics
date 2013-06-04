@@ -3,10 +3,13 @@
 
         var eventHandlersNames = ['Google'];
         this.setEventHandlers = function(handlers) {
-            if (_.isString(handlers)) {
+            if (angular.isString(handlers)) {
                 handlers = [handlers];
             }
-            eventHandlersNames = _.map(handlers, capitalizeHandler);
+            eventHandlersNames = [];
+            angular.forEach(handlers, function(handler) {
+                eventHandlersNames.push(capitalizeHandler(handler))
+            });
         }
 
         var capitalizeHandler = function(handler) {
@@ -16,12 +19,14 @@
         this.$get = function($injector, $rootScope, $location) {
 
             // Helper methods
-            var eventHandlers = _.map(eventHandlersNames, function(handler) {
-                return $injector.get('Angularytics' + handler + 'Handler');
+            var eventHandlers = [];
+
+            angular.forEach(eventHandlersNames, function(handler) {
+                eventHandlers.push($injector.get('Angularytics' + handler + 'Handler'));
             });
 
             var forEachHandlerDo = function(action) {
-                _.each(eventHandlers, function(handler) {
+                angular.forEach(eventHandlers, function(handler) {
                     action(handler);
                 });
             }

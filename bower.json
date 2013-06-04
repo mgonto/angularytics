@@ -8,7 +8,6 @@
     "url": "git://github.com/mgonto/angularytics.git"
   },
   "dependencies": {
-    "lodash": "~1.2.0",
     "angular": "*"
   },
   "ignore": [
