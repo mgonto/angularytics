@@ -36,6 +36,7 @@
     "grunt-bower": "*",
     "grunt-bower-task": "*",
     "grunt-karma": "*",
+    "grunt-ngmin": "latest",
     "grunt-conventional-changelog": "0.0.12",
     "grunt-zip": "*"
   },

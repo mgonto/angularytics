@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         banner: '<%= meta.banner %>'
       },
       dist: {
-        src: ['src/*.js'],
+        src: ['src/angularytics.js', 'src/consoleHandler', 'src/googleHandler', 'src/trackEventFilter'],
         dest: '<%= dirs.dest %>/<%= pkg.name %>.js'
       }
     },
@@ -45,6 +45,16 @@ module.exports = function(grunt) {
       dist: {
         src: ['<%= concat.dist.dest %>'],
         dest: '<%= dirs.dest %>/<%= pkg.name %>.min.js'
+      }
+    },
+    ngmin: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= concat.dist.dest %>',
+          src: '*.js',
+          dest: '<%= concat.dist.dest %>'
+        }]
       }
     },
     jshint: {
@@ -115,12 +125,14 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-zip');
 
+  grunt.loadNpmTasks('grunt-ngmin');
+
 
   // Default task.
   grunt.registerTask('default', ['build']);
 
   // Build task.
-  grunt.registerTask('build', ['bowerInstall', 'bower', 'concat', 'uglify', 'zip']);
+  grunt.registerTask('build', ['bowerInstall', 'bower', 'concat', 'ngmin', 'uglify', 'zip']);
 
   grunt.registerTask('test', ['karma:build', 'karma:buildUnderscore']);
 
