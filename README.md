@@ -18,9 +18,9 @@ You can download this by:
 * Using npm and running `npm install angularytics`
 * Downloading it manually by clicking [here to download development unminified version](https://raw.github.com/mgonto/angularytics/master/dist/angularytics.js) or [here to download minified production version](https://raw.github.com/mgonto/angularytics/master/dist/angularytics.min.js)
 
-#Dependencies & Prerequisites
+#Prerequisites
 
-Angularytics depends on Angular and (Underscore or Lodash).
+Angularytics depends on AngularJS.
 
 You need to add the needed Analytics code (Google Analytics) in your app. I though of adding this in the service, but if you just add it in the body, it'd load MUCH faster than if we loaded this in the init. If everybody wants to move this to the service's init, then please submit an issue.
 
