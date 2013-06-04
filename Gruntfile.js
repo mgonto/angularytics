@@ -15,7 +15,8 @@ module.exports = function(grunt) {
       ' */\n'
     },
     dirs: {
-      dest: 'dist'
+      dest: 'dist',
+      src: 'src'
     },
     concat: {
       options: {
@@ -48,13 +49,11 @@ module.exports = function(grunt) {
       }
     },
     ngmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= concat.dist.dest %>',
-          src: '*.js',
-          dest: '<%= concat.dist.dest %>'
-        }]
+      files: {
+        expand: true,
+        cwd: '',
+        src: '<%= concat.dist.dest %>',
+        dest: ''
       }
     },
     jshint: {
