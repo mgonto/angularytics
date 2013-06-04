@@ -1,6 +1,7 @@
 #Angularytics
 
 Angularytics is the solution to tracking PageViews and Events on your Single Page App. 
+
 All analytics frameworks are based on browser refreshes to track page views. I've created this service wrapper so that we can track page views in our WebApp without a page refresh and without too much configuration.
 
 ## Main Features
