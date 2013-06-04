@@ -61,6 +61,38 @@ angular.controller('MainCtrl', function(Angularytics, $scope) {
 });
 ````
 
+## Event Handlers
+
+There're now 2 event handlers: `Console` and `Google`.
+
+Console will log all page views and events.
+Google will track using Google Analytics all page views and events.
+
+### Adding your own event handler
+
+You can add your own event handler in 3 wasy steps:
+
+#### Create your service.
+
+You need to create a service with the following name format: `Angularytics[EventHandlerName]Handler`. For example AngularyticsKissmestricsHandler.
+
+This service must have the following methods and signatures:
+
+* **trackPageView(url)**: Tracks a page view to the given URL
+* **trackEvent(category, action, opt_label, opt_value, opt_noninteraction)**: Tracks a new event with the given parameters
+
+#### Use this service by changing the AngularyticsProvider
+Use this newly created service by setting the name in the AngularyticsProvider.
+For example:
+
+````javascript
+// Considering the service is named AngularyticsKissmestricsHandler
+AngularyticsProvider.setEventHandlers(['Console', 'Kissmestrics']);
+````
+
+#### Have fun using it
+This is easy, right?
+
 # Releases Notes
 
 [Click here to see Releases Notes](https://github.com/mgonto/angularytics/blob/master/CHANGELOG.md)
