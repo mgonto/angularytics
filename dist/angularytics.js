@@ -65,3 +65,44 @@
 
     });
 })();
+
+(function(){
+    angular.module('angularytics').factory('AngularyticsConsoleHandler', function($log) {
+        var service = {};
+
+        service.trackPageView = function(url) {
+            $log.log("URL visited", url);
+        }
+
+        service.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+            $log.log("Event tracked", category, action, opt_label, opt_value, opt_noninteraction);
+        }
+
+        return service;
+    });
+})();
+
+(function(){
+    angular.module('angularytics').factory('AngularyticsGoogleHandler', function($log) {
+        var service = {};
+
+        service.trackPageView = function(url) {
+            _gaq.push(['_trackPageview', url]);
+        }
+
+        service.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+            _gaq.push(['_trackEvent', category, action, opt_label, opt_value, opt_noninteraction]);
+        }
+
+        return service;
+    });
+})();
+
+(function(){
+    angular.module('angularytics').filter('trackEvent', function(Angularytics) {
+        return function(entry, category, action, opt_label, opt_value, opt_noninteraction) {
+            Angularytics.trackEvent(category, action, opt_label, opt_value, opt_noninteraction);
+            return entry;
+        }
+    });
+})();

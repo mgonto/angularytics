@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         banner: '<%= meta.banner %>'
       },
       dist: {
-        src: ['src/angularytics.js', 'src/consoleHandler', 'src/googleHandler', 'src/trackEventFilter'],
+        src: ['src/angularytics.js', 'src/consoleHandler.js', 'src/googleHandler.js', 'src/trackEventFilter.js'],
         dest: '<%= dirs.dest %>/<%= pkg.name %>.js'
       }
     },
