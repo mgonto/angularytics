@@ -12,5 +12,17 @@
         }
 
         return service;
+    }).factory('AngularyticsGoogleUniversalHandler', function () {
+        var service = {};
+
+        service.trackPageView = function (url) {
+            ga('send', 'pageView', { 'page': url });
+        };
+
+        service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
+            ga('send', 'event', category, action, opt_label, opt_value, {'nonInteraction': opt_noninteraction});
+        };
+
+        return service;
     });
 })();
