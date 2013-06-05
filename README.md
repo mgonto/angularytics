@@ -65,9 +65,9 @@ angular.controller('MainCtrl', function(Angularytics, $scope) {
 });
 ````
 
-## Event Handlers
+## Event Handlers (Available providers)
 
-There're now 2 event handlers: `Console` and `Google`.
+There're now 3 event handlers: `Console` and `Google` and `GoogleUniversal`. The last one of this uses `ga` instead of `_gaq`
 
 Console will log all page views and events.
 Google will track using Google Analytics all page views and events.
