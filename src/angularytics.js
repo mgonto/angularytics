@@ -13,7 +13,7 @@
         }
 
         var capitalizeHandler = function(handler) {
-            return handler.charAt(0).toUpperCase() + handler.substring(1).toLowerCase();
+            return handler.charAt(0).toUpperCase() + handler.substring(1);
         }
 
         this.$get = function($injector, $rootScope, $location) {
