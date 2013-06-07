@@ -11,7 +11,7 @@
       });
     };
     var capitalizeHandler = function (handler) {
-      return handler.charAt(0).toUpperCase() + handler.substring(1).toLowerCase();
+      return handler.charAt(0).toUpperCase() + handler.substring(1);
     };
     this.$get = [
       '$injector',
@@ -93,7 +93,16 @@
       };
       return service;
     }
-  ]);
+  ]).factory('AngularyticsGoogleUniversalHandler', function () {
+    var service = {};
+    service.trackPageView = function (url) {
+      ga('send', 'pageView', { 'page': url });
+    };
+    service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
+      ga('send', 'event', category, action, opt_label, opt_value, { 'nonInteraction': opt_noninteraction });
+    };
+    return service;
+  });
 }());
 (function () {
   angular.module('angularytics').filter('trackEvent', [
