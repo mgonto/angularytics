@@ -1,7 +1,7 @@
 {
   "name": "angularytics",
   "description": "The solution to tracking page views and events in a SPA with AngularJS",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "filename": "angularytics.min.js",
   "homepage": "https://github.com/mgonto/angularytics",
   "author": "Martin Gontovnikas <martin@gonto.com.ar>",
