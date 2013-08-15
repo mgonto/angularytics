@@ -15,6 +15,11 @@
         var capitalizeHandler = function(handler) {
             return handler.charAt(0).toUpperCase() + handler.substring(1);
         }
+        
+        var pageChangeEvent = '$locationChangeSuccess';
+        this.setPageChangeEvent = function(newPageChangeEvent) {
+          pageChangeEvent = newPageChangeEvent;
+        }
 
         this.$get = function($injector, $rootScope, $location) {
 
@@ -32,7 +37,7 @@
             }
 
             // Event listeing
-            $rootScope.$on('$locationChangeSuccess', function() {
+            $rootScope.$on(pageChangeEvent, function() {
                 forEachHandlerDo(function(handler) {
                     var url = $location.path();
                     if (url) {
