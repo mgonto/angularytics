@@ -13,6 +13,10 @@
     var capitalizeHandler = function (handler) {
       return handler.charAt(0).toUpperCase() + handler.substring(1);
     };
+    var pageChangeEvent = '$locationChangeSuccess';
+    this.setPageChangeEvent = function (newPageChangeEvent) {
+      pageChangeEvent = newPageChangeEvent;
+    };
     this.$get = [
       '$injector',
       '$rootScope',
@@ -27,7 +31,7 @@
             action(handler);
           });
         };
-        $rootScope.$on('$locationChangeSuccess', function () {
+        $rootScope.$on(pageChangeEvent, function () {
           forEachHandlerDo(function (handler) {
             var url = $location.path();
             if (url) {
@@ -96,7 +100,8 @@
   ]).factory('AngularyticsGoogleUniversalHandler', function () {
     var service = {};
     service.trackPageView = function (url) {
-      ga('send', 'pageView', url);
+      ga('set', 'page', url);
+      ga('send', 'pageview', url);
     };
     service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
       ga('send', 'event', category, action, opt_label, opt_value, { 'nonInteraction': opt_noninteraction });
