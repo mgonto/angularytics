@@ -8,7 +8,7 @@
   "author": "Martin Gontovnikas <martin@gonto.com.ar>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mgonto/angularytics.git"
+    "url": "git://github.com/b374/angularytics.git"
   },
   "engines": {
     "node": ">= 0.9"
