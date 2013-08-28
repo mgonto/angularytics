@@ -59,6 +59,14 @@
                     }
                 });
             }
+            
+            service.trackPageView = function(url) {
+                forEachHandlerDo(function(handler) {
+                    if (url) {
+                        handler.trackPageView(url);
+                    }
+                });
+            }
 
             return service;
 
