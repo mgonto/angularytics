@@ -5,7 +5,7 @@
   "description": "The solution to tracking page views and events in a SPA with AngularJS",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mgonto/angularytics.git"
+    "url": "git://github.com/b374/angularytics.git"
   },
   "dependencies": {
     "angular": "*"
