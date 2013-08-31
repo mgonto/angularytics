@@ -36,16 +36,6 @@
                 });
             }
 
-            // Event listeing
-            $rootScope.$on(pageChangeEvent, function() {
-                forEachHandlerDo(function(handler) {
-                    var url = $location.path();
-                    if (url) {
-                        handler.trackPageView(url);    
-                    }
-                })
-            });
-
             var service = {};
             // Just dummy function so that it's instantiated on app creation
             service.init = function() {
@@ -67,6 +57,11 @@
                     }
                 });
             }
+            
+            // Event listening
+            $rootScope.$on(pageChangeEvent, function() {
+                service.trackPageView($location.path())
+            });
 
             return service;
 
