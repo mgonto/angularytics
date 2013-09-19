@@ -31,14 +31,6 @@
             action(handler);
           });
         };
-        $rootScope.$on(pageChangeEvent, function () {
-          forEachHandlerDo(function (handler) {
-            var url = $location.path();
-            if (url) {
-              handler.trackPageView(url);
-            }
-          });
-        });
         var service = {};
         service.init = function () {
         };
@@ -49,6 +41,16 @@
             }
           });
         };
+        service.trackPageView = function (url) {
+          forEachHandlerDo(function (handler) {
+            if (url) {
+              handler.trackPageView(url);
+            }
+          });
+        };
+        $rootScope.$on(pageChangeEvent, function () {
+          service.trackPageView($location.path());
+        });
         return service;
       }
     ];
