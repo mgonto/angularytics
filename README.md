@@ -32,7 +32,7 @@ This is the quick configuration to bootstrap all. Read the rest of the documenta
 ````javascript
 angular.module('sample-app', ['angularytics'])
   .config(function(AngularyticsProvider) {
-    AngularyticsProvider.setEventHandlers(['Console', 'Google']);
+    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
   }).run(function(Angularytics) {
     Angularytics.init();
   });
@@ -67,7 +67,7 @@ angular.controller('MainCtrl', function(Angularytics, $scope) {
 
 ## Event Handlers (Available providers)
 
-There're now 3 event handlers: `Console` and `Google` and `GoogleUniversal`. The last one of this uses `ga` instead of `_gaq`
+There're now 3 event handlers: `Console` and `Google` and `GoogleUniversal`. **The last one of this uses `ga` instead of `_gaq`**
 
 Console will log all page views and events.
 Google will track using Google Analytics all page views and events.
