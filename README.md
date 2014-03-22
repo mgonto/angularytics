@@ -32,6 +32,19 @@ You need to add the needed Analytics code (Google Analytics) in your app. I thou
 
 ## TL;DR Basic configuration on your app.
 This is the quick configuration to bootstrap all. Read the rest of the documentation for further configuration and understanding. After doing this, Angularytics will automatically track all of the page views in the app for you. 
+First add your generated analytics tracking javascript to your page, found in the analytics console at Tracking Info -> Tracking Code. This looks like:
+
+````javascript
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'YOUR_TRACKING_CODE');
+  //ga('send', 'pageview');
+````
+Most of the time this code is somewhere on your index page between <script></script>
+Note that the ga('send'.... ) is commented in order to prevent dirty reporting. 
 
 ````javascript
 angular.module('sample-app', ['angularytics'])
