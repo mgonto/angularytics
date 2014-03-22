@@ -1,5 +1,5 @@
 (function(){
-    angular.module('angularytics').factory('AngularyticsConsoleHandler', function($log) {
+    angular.module('angularytics').factory('AngularyticsConsoleHandler', ['$log', function($log) {
         var service = {};
 
         service.trackPageView = function(url) {
@@ -11,5 +11,5 @@
         }
 
         return service;
-    });
+    }]);
 })();

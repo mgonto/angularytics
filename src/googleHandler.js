@@ -1,5 +1,5 @@
 (function(){
-    angular.module('angularytics').factory('AngularyticsGoogleHandler', function($log) {
+    angular.module('angularytics').factory('AngularyticsGoogleHandler', ['$log', function($log) {
         var service = {};
 
         service.trackPageView = function(url) {
@@ -12,7 +12,7 @@
         }
 
         return service;
-    }).factory('AngularyticsGoogleUniversalHandler', function () {
+    }]).factory('AngularyticsGoogleUniversalHandler', function () {
         var service = {};
 
         service.trackPageView = function (url) {
