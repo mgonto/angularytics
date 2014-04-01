@@ -1,10 +1,3 @@
-/**
- * The solution to tracking page views and events in a SPA with AngularJS
- * @version v0.2.3 - 2014-04-01
- * @link https://github.com/mgonto/angularytics
- * @author Martin Gontovnikas <martin@gonto.com.ar>
- * @license MIT License, http://www.opensource.org/licenses/MIT
- */
 (function () {
   angular.module('angularytics', []).provider('Angularytics', function () {
     var eventHandlersNames = ['Google'];
@@ -29,7 +22,6 @@
       '$rootScope',
       '$location',
       function ($injector, $rootScope, $location) {
-        // Helper methods
         var eventHandlers = [];
         angular.forEach(eventHandlersNames, function (handler) {
           eventHandlers.push($injector.get('Angularytics' + handler + 'Handler'));
@@ -40,7 +32,6 @@
           });
         };
         var service = {};
-        // Just dummy function so that it's instantiated on app creation
         service.init = function () {
         };
         service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
@@ -57,7 +48,6 @@
             }
           });
         };
-        // Event listening
         $rootScope.$on(pageChangeEvent, function () {
           service.trackPageView($location.path());
         });
