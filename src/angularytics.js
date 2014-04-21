@@ -60,7 +60,7 @@
             
             // Event listening
             $rootScope.$on(pageChangeEvent, function() {
-                service.trackPageView($location.path())
+                service.trackPageView($location.url())
             });
 
             return service;
