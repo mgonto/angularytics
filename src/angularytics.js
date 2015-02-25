@@ -10,16 +10,16 @@
             angular.forEach(handlers, function(handler) {
                 eventHandlersNames.push(capitalizeHandler(handler))
             });
-        }
+        };
 
         var capitalizeHandler = function(handler) {
             return handler.charAt(0).toUpperCase() + handler.substring(1);
-        }
+        };
         
         var pageChangeEvent = '$locationChangeSuccess';
         this.setPageChangeEvent = function(newPageChangeEvent) {
           pageChangeEvent = newPageChangeEvent;
-        }
+        };
 
         this.$get = function($injector, $rootScope, $location) {
 
@@ -34,13 +34,13 @@
                 angular.forEach(eventHandlers, function(handler) {
                     action(handler);
                 });
-            }
+            };
 
             var service = {};
             // Just dummy function so that it's instantiated on app creation
             service.init = function() {
 
-            }
+            };
 
             service.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
                 forEachHandlerDo(function(handler) {
@@ -48,7 +48,7 @@
                         handler.trackEvent(category, action, opt_label, opt_value, opt_noninteraction);
                     }
                 });
-            }
+            };
             
             service.trackPageView = function(url) {
                 forEachHandlerDo(function(handler) {
@@ -56,7 +56,7 @@
                         handler.trackPageView(url);
                     }
                 });
-            }
+            };
             
             // Event listening
             $rootScope.$on(pageChangeEvent, function() {
@@ -64,8 +64,6 @@
             });
 
             return service;
-
-            
 
         };
 
