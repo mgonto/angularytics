@@ -10,6 +10,10 @@
             $log.log("Event tracked", category, action, opt_label, opt_value, opt_noninteraction);
         };
 
+        service.trackTiming = function(category, variable, value, opt_label) {
+            $log.log("Timing tracked", category, variable, value, opt_label);
+        };
+
         return service;
     });
 })();

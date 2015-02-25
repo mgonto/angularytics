@@ -57,6 +57,14 @@
                     }
                 });
             };
+
+            service.trackTiming = function(category, variable, value, opt_label) {
+                forEachHandlerDo(function(handler) {
+                    if (category && variable && value) {
+                        handler.trackTiming(category, variable, value, opt_label);
+                    }
+                });
+            };
             
             // Event listening
             $rootScope.$on(pageChangeEvent, function() {
