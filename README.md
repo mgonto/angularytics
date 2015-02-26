@@ -88,6 +88,7 @@ This service must have the following methods and signatures:
 
 * **trackPageView(url)**: Tracks a page view to the given URL
 * **trackEvent(category, action, opt_label, opt_value, opt_noninteraction)**: Tracks a new event with the given parameters
+* **trackTiming(category, variable, value, opt_label)**: Tracks user timings with the given parameters
 
 #### Use this service by changing the AngularyticsProvider
 Use this newly created service by setting the name in the AngularyticsProvider.
