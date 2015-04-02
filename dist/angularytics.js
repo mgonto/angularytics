@@ -1,3 +1,10 @@
+/**
+ * The solution to tracking page views and events in a SPA with AngularJS
+ * @version v0.4.0 - 2015-04-02
+ * @link https://github.com/mgonto/angularytics
+ * @author Martin Gontovnikas <martin@gonto.com.ar>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
 (function () {
   angular.module('angularytics', []).provider('Angularytics', function () {
     var eventHandlersNames = ['Google'];
@@ -22,6 +29,7 @@
       '$rootScope',
       '$location',
       function ($injector, $rootScope, $location) {
+        // Helper methods
         var eventHandlers = [];
         angular.forEach(eventHandlersNames, function (handler) {
           eventHandlers.push($injector.get('Angularytics' + handler + 'Handler'));
@@ -32,6 +40,7 @@
           });
         };
         var service = {};
+        // Just dummy function so that it's instantiated on app creation
         service.init = function () {
         };
         service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
@@ -55,6 +64,7 @@
             }
           });
         };
+        // Event listening
         $rootScope.$on(pageChangeEvent, function () {
           service.trackPageView($location.url());
         });
@@ -115,20 +125,32 @@
       ]);
     };
     return service;
-  }).factory('AngularyticsGoogleUniversalHandler', function () {
-    var service = {};
-    service.trackPageView = function (url) {
-      ga('set', 'page', url);
-      ga('send', 'pageview', url);
-    };
-    service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
-      ga('send', 'event', category, action, opt_label, opt_value, { 'nonInteraction': opt_noninteraction });
-    };
-    service.trackTiming = function (category, variable, value, opt_label) {
-      ga('send', 'timing', category, variable, value, opt_label);
-    };
-    return service;
-  });
+  }).factory('AngularyticsGoogleUniversalHandler', [
+    '$log',
+    function ($log) {
+      var service = {};
+      service.trackPageView = function (url) {
+        if (typeof ga === 'undefined') {
+          $log.log('Google Analytics not loaded: missed pageView ' + url);
+        }
+        ga('set', 'page', url);
+        ga('send', 'pageview', url);
+      };
+      service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
+        if (typeof ga === 'undefined') {
+          $log.log('Google Analytics not loaded: missed action ' + action);
+        }
+        ga('send', 'event', category, action, opt_label, opt_value, { 'nonInteraction': opt_noninteraction });
+      };
+      service.trackTiming = function (category, variable, value, opt_label) {
+        if (typeof ga === 'undefined') {
+          $log.log('Google Analytics not loaded: missed timing ' + variable);
+        }
+        ga('send', 'timing', category, variable, value, opt_label);
+      };
+      return service;
+    }
+  ]);
 }());
 (function () {
   angular.module('angularytics').filter('trackEvent', [
