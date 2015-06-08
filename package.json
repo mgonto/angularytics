@@ -1,14 +1,14 @@
 {
   "name": "angularytics",
   "description": "The solution to tracking page views and events in a SPA with AngularJS",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "filename": "angularytics.min.js",
   "main": "./dist/angularytics.min.js",
-  "homepage": "https://github.com/mgonto/angularytics",
+  "homepage": "https://github.com/kataga/angularytics",
   "author": "Martin Gontovnikas <martin@gonto.com.ar>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mgonto/angularytics.git"
+    "url": "git://github.com/kataga/angularytics.git"
   },
   "engines": {
     "node": ">= 0.9"
