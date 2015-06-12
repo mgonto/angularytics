@@ -45,6 +45,15 @@ angular.module('sample-app', ['angularytics'])
 ## Tracking Page Views
 This is easy :). You don't need to do anything. By configuring Angularytics with your app like in the step before, all pages will start being tracked.
 
+If you wish to disabled this for whatever reason, you can use:
+
+```javascript
+.config(function(AngularyticsProvider) {
+  AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
+  AngularyticsProvider.disablePageViewTracking();
+})
+```
+
 ## Tracking events
 The trackEvent function in service and filter has the same parameters in the same order as Google Analytics. [Click here to check the Google Analytics documentation](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide).
 There're 2 ways of tracking events. Either using Angularytics service, or using the filter.
