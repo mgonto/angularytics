@@ -20,6 +20,11 @@
         this.setPageChangeEvent = function(newPageChangeEvent) {
           pageChangeEvent = newPageChangeEvent;
         };
+        
+        var pageViewTrackingEnabled = true;
+        this.disablePageViewTracking = function(){
+            pageViewTrackingEnabled = false;
+        };
 
         this.$get = function($injector, $rootScope, $location) {
 
@@ -67,9 +72,11 @@
             };
             
             // Event listening
-            $rootScope.$on(pageChangeEvent, function() {
-                service.trackPageView($location.url())
-            });
+            if(pageViewTrackingEnabled){
+                $rootScope.$on(pageChangeEvent, function() {
+                    service.trackPageView($location.url())
+                });
+            }
 
             return service;
 
