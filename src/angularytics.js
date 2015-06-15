@@ -3,7 +3,7 @@
   angular.module( 'angularytics', [] ).provider( 'Angularytics', function ()
   {
 
-    var developmentModeVar = false;
+    var productionModeVar = false;
     var eventHandlersNames = ['Google'];
     this.setEventHandlers = function ( handlers )
     {
@@ -55,22 +55,22 @@
 
       };
 
-      service.developmentMode = function ( devMode )
+      service.productionMode = function ( prod )
       {
-        if ( devMode === true || devMode === false )
+        if ( prod === true || prod === false )
         {
-          developmentModeVar = devMode;
+          productionModeVar = prod;
         }
         else
         {
-          developmentModeVar = false;
+          productionModeVar = false;
         }
       };
 
       service.trackEvent =
         function ( category, action, opt_label, opt_value, opt_noninteraction )
         {
-          if ( developmentModeVar !== true )
+          if ( productionModeVar === true )
           {
             forEachHandlerDo( function ( handler )
             {
@@ -85,7 +85,7 @@
 
       service.trackPageView = function ( url )
       {
-        if ( developmentModeVar !== true )
+        if ( productionModeVar === true )
         {
           forEachHandlerDo( function ( handler )
           {
@@ -99,7 +99,7 @@
 
       service.trackTiming = function ( category, variable, value, opt_label )
       {
-        if ( developmentModeVar !== true )
+        if ( productionModeVar === true )
         {
           forEachHandlerDo( function ( handler )
           {
@@ -115,7 +115,7 @@
       // Event listening
       $rootScope.$on( pageChangeEvent, function ()
       {
-        if ( developmentModeVar !== true )
+        if ( productionModeVar === true )
         {
           service.trackPageView( $location.url() )
         }
