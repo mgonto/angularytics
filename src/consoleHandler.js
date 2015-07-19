@@ -15,12 +15,12 @@
         };
 
           //addons for ecommerce order tracking
-        service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country) {
-            $log.log('Transaction tracked', transactionID, affiliation, total, tax, shipping, city, state, country);
+        service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country, currency) {
+            $log.log('Transaction tracked', transactionID, affiliation, total, tax, shipping, city, state, country, currency);
         };
         //addons for ecommerce item tracking
-        service.trackEcommerceItem = function (transactionID, sku, name, category, price, quantity) {
-            $log.log('Items tracked',transactionID, sku, name, category, price, quantity);
+        service.trackEcommerceItem = function (transactionID, sku, name, category, price, quantity, currency) {
+            $log.log('Items tracked',transactionID, sku, name, category, price, quantity, currency);
         };
         //addons for ecommerce
         service.pushTransaction = function () {
