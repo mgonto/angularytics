@@ -14,6 +14,19 @@
             $log.log("Timing tracked", category, variable, value, opt_label);
         };
 
+          //addons for ecommerce order tracking
+        service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country) {
+            $log.log('Transaction tracked', transactionID, affiliation, total, tax, shipping, city, state, country);
+        };
+        //addons for ecommerce item tracking
+        service.trackEcommerceItem = function (transactionID, sku, name, category, price, quantity) {
+            $log.log('Items tracked',transactionID, sku, name, category, price, quantity);
+        };
+        //addons for ecommerce
+        service.pushTransaction = function () {
+            $log.log('Transaction pushed', 'Success!!');
+        };
+
         return service;
     });
 })();
