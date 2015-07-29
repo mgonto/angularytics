@@ -66,7 +66,7 @@ This is the most common way of tracking events. Suppose that you have a button w
 ````
 
 ### Using the service
-You just need to inject the service and call the trackEvent function.
+You just need to inject the service and call the `trackEvent` function.
 
 Let's see an example:
 
@@ -80,24 +80,24 @@ angular.controller('MainCtrl', function(Angularytics, $scope) {
 
 ## Event Handlers (Available providers)
 
-There're now 3 event handlers: `Console` and `Google` and `GoogleUniversal`. **The last one of this uses `ga` instead of `_gaq`**
+There are 3 event handlers: `Console`, `Google`, and `GoogleUniversal`. **The last one of this uses `ga` instead of `_gaq`**.
 
-Console will log all page views and events.
-Google will track using Google Analytics all page views and events.
+- `Console` logs all page views and events.
+- `Google` tracks all page views and events using Google Analytics.
 
 ### Adding your own event handler
 
-You can add your own event handler in 3 wasy steps:
+You can add your own event handler in 3 easy steps:
 
 #### Create your service.
 
-You need to create a service with the following name format: `Angularytics[EventHandlerName]Handler`. For example AngularyticsKissmetricsHandler.
+You need to create a service with the following name format: `Angularytics[EventHandlerName]Handler`. For example: `AngularyticsKissmetricsHandler`.
 
 This service must have the following methods and signatures:
 
-* **trackPageView(url)**: Tracks a page view to the given URL
-* **trackEvent(category, action, opt_label, opt_value, opt_noninteraction)**: Tracks a new event with the given parameters
-* **trackTiming(category, variable, value, opt_label)**: Tracks user timings with the given parameters
+* `trackPageView(url)`: Tracks a page view to the given URL
+* `trackEvent(category, action, opt_label, opt_value, opt_noninteraction)`: Tracks a new event with the given parameters
+* `trackTiming(category, variable, value, opt_label)`: Tracks user timings with the given parameters
 
 #### Use this service by changing the AngularyticsProvider
 Use this newly created service by setting the name in the AngularyticsProvider.
