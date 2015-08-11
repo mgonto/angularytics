@@ -26,7 +26,7 @@ You can download this by:
 
 Angularytics depends on AngularJS.
 
-You need to add the needed Analytics code (Google Analytics) in your app. I though of adding this in the service, but if you just add it in the body, it'd load MUCH faster than if we loaded this in the init. If everybody wants to move this to the service's init, then please submit an issue.
+You need to add the needed Analytics code (Google Analytics) in your app. I thought of adding this in the service, but if you just add it in the body, it'd load MUCH faster than if we loaded this in the init. If everybody wants to move this to the service's init, then please submit an issue.
 
 #Starter Guide
 
