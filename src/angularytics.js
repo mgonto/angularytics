@@ -65,7 +65,7 @@
 
             service.trackTiming = function(category, variable, value, opt_label) {
                 forEachHandlerDo(function(handler) {
-                    if (category && variable && value) {
+                    if (category && variable && angular.isDefined(value)) {
                         handler.trackTiming(category, variable, value, opt_label);
                     }
                 });
