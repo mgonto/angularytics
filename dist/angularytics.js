@@ -1,3 +1,10 @@
+/**
+ * The solution to tracking page views and events in a SPA with AngularJS
+ * @version v0.4.0 - 2015-11-30
+ * @link https://github.com/mgonto/angularytics
+ * @author Martin Gontovnikas <martin@gonto.com.ar>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
 (function () {
   angular.module('angularytics', []).provider('Angularytics', function () {
     var eventHandlersNames = ['Google'];
@@ -17,11 +24,16 @@
     this.setPageChangeEvent = function (newPageChangeEvent) {
       pageChangeEvent = newPageChangeEvent;
     };
+    var pageViewTrackingEnabled = true;
+    this.disablePageViewTracking = function () {
+      pageViewTrackingEnabled = false;
+    };
     this.$get = [
       '$injector',
       '$rootScope',
       '$location',
       function ($injector, $rootScope, $location) {
+        // Helper methods
         var eventHandlers = [];
         angular.forEach(eventHandlersNames, function (handler) {
           eventHandlers.push($injector.get('Angularytics' + handler + 'Handler'));
@@ -32,6 +44,7 @@
           });
         };
         var service = {};
+        // Just dummy function so that it's instantiated on app creation
         service.init = function () {
         };
         service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
@@ -55,9 +68,12 @@
             }
           });
         };
-        $rootScope.$on(pageChangeEvent, function () {
-          service.trackPageView($location.url());
-        });
+        // Event listening
+        if (pageViewTrackingEnabled) {
+          $rootScope.$on(pageChangeEvent, function () {
+            service.trackPageView($location.url());
+          });
+        }
         return service;
       }
     ];
@@ -126,6 +142,25 @@
     };
     service.trackTiming = function (category, variable, value, opt_label) {
       ga('send', 'timing', category, variable, value, opt_label);
+    };
+    return service;
+  }).factory('AngularyticsGoogleTagManagerHandler', function () {
+    var service = {};
+    var dataLayer = window.dataLayer = window.dataLayer || [];
+    service.trackPageView = function (url) {
+      dataLayer.push({
+        'event': 'virtualPageview',
+        'vpPath': url
+      });
+    };
+    service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
+      dataLayer.push({
+        'eventCategory': category,
+        'eventAction': action,
+        'eventLabel': opt_label,
+        'eventValue': opt_value,
+        'event': 'analyticsEvent'
+      });
     };
     return service;
   });

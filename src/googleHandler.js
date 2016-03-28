@@ -70,5 +70,25 @@
         }
 
         return service;
+    }).factory('AngularyticsGoogleTagManagerHandler', function () {
+        var service = {};
+        var dataLayer = window.dataLayer = window.dataLayer || [];
+
+        service.trackPageView = function (url) {
+            dataLayer.push({
+                'event': 'virtualPageview',
+                'vpPath': url
+            });
+        };
+        service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
+            dataLayer.push({
+                'eventCategory': category,
+                'eventAction': action,
+                'eventLabel': opt_label,
+                'eventValue': opt_value,
+                'event': 'analyticsEvent'
+            });
+        };
+        return service;
     });
 })();
