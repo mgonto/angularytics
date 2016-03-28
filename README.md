@@ -45,7 +45,7 @@ angular.module('sample-app', ['angularytics'])
 ## Tracking Page Views
 This is easy :). You don't need to do anything. By configuring Angularytics with your app like in the step before, all pages will start being tracked.
 
-If you wish to disabled this for whatever reason, you can use:
+If you wish to disable this for whatever reason, you can use:
 
 ```javascript
 .config(function(AngularyticsProvider) {
