@@ -78,6 +78,28 @@
                 });
             }
 
+            //addons for ecommerce order tracking
+            service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country, currency) {
+                forEachHandlerDo(function (handler){
+                    if (transactionID) {
+                        handler.trackEcommerceTrans(transactionID, affiliation, total, tax, shipping, city, state, country, currency);
+                    }
+                });
+            };
+            //addons for ecommerce item tracking
+            service.trackEcommerceItem = function(transactionID, sku, name, category, price, quantity, currency) {
+                forEachHandlerDo(function(handler){
+                    if (transactionID) {
+                        handler.trackEcommerceItem(transactionID, sku, name, category, price, quantity, currency);
+                    }
+                });
+            };
+            //addons for ecommerce item tracking
+            service.pushTransaction = function () {
+                forEachHandlerDo(function(handler){
+                    handler.pushTransaction();
+                });
+            };
             return service;
 
         };

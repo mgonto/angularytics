@@ -15,6 +15,17 @@
             _gaq.push(['_trackTiming', category, variable, value, opt_label]);
         };
 
+        //addons for ecommerce tracking
+        service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country, currency) {
+            _gaq.push(['_addTrans', transactionID, affiliation, total, tax, shipping, city, state, country, currency]);
+        };
+        service.trackEcommerceItem = function (transactionID, sku, name, category, price, quantity, currency) {
+            _gaq.push(['_addItem', transactionID, sku, name, category, price, quantity, currency]);
+        };
+        service.pushTransaction = function () {
+            _gaq.push(['_trackTrans']);
+        };
+
         return service;
     }).factory('AngularyticsGoogleUniversalHandler', function () {
         var service = {};
@@ -31,6 +42,32 @@
         service.trackTiming = function (category, variable, value, opt_label) {
             ga('send', 'timing', category, variable, value, opt_label);
         };
+        service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country, currency) {
+            ga('require', 'ecommerce');
+            ga('ecommerce:addTransaction', {
+                'id': transactionID,            // Transaction ID. Required
+                'affiliation': affiliation,    // Affiliation or store name
+                'revenue': total,              // Grand Total
+                'shipping': shipping,          // Shipping
+                'tax': tax,                     // Tax
+                'currency': currency
+            });
+        };
+        service.trackEcommerceItem = function(transactionID, sku, name, category, price, quantity, currency) {
+            ga('require', 'ecommerce');
+            ga('ecommerce:addItem', {
+                'id': transactionID,        // Transaction ID. Required
+                'name': name,               // name
+                'sku': sku,                 // SKU
+                'category': category,       // category
+                'price': price,             // price
+                'quantity': quantity,       //quantity
+                'currency': currency
+            });
+        };
+        service.pushTransaction = function () {
+            ga('ecommerce:send');
+        }
 
         return service;
     });
