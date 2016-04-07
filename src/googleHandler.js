@@ -31,42 +31,66 @@
         var service = {};
 
         service.trackPageView = function (url) {
-            ga('set', 'page', url);
-            ga('send', 'pageview', url);
+            var trackers = ga.getAll() || [];
+
+            angular.forEach(trackers, function(tracker) {
+                ga(tracker.get('name') + '.set', 'page', url);
+                ga(tracker.get('name') + '.send', 'pageview', url);
+            });
         };
 
         service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
-            ga('send', 'event', category, action, opt_label, opt_value, {'nonInteraction': opt_noninteraction});
+            var trackers = ga.getAll() || [];
+
+            angular.forEach(trackers, function(tracker) {
+                ga(tracker.get('name') + '.send', 'event', category, action, opt_label, opt_value, {'nonInteraction': opt_noninteraction});
+            });
         };
 
         service.trackTiming = function (category, variable, value, opt_label) {
-            ga('send', 'timing', category, variable, value, opt_label);
+            var trackers = ga.getAll() || [];
+
+            angular.forEach(trackers, function(tracker) {
+                ga(tracker.get('name') + '.send', 'timing', category, variable, value, opt_label);
+            });
         };
         service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country, currency) {
-            ga('require', 'ecommerce');
-            ga('ecommerce:addTransaction', {
-                'id': transactionID,            // Transaction ID. Required
-                'affiliation': affiliation,    // Affiliation or store name
-                'revenue': total,              // Grand Total
-                'shipping': shipping,          // Shipping
-                'tax': tax,                     // Tax
-                'currency': currency
+            var trackers = ga.getAll() || [];
+
+            angular.forEach(trackers, function(tracker) {
+                ga(tracker.get('name') + '.require', 'ecommerce');
+                ga(tracker.get('name') + '.ecommerce:addTransaction', {
+                    'id': transactionID,            // Transaction ID. Required
+                    'affiliation': affiliation,    // Affiliation or store name
+                    'revenue': total,              // Grand Total
+                    'shipping': shipping,          // Shipping
+                    'tax': tax,                     // Tax
+                    'currency': currency
+                });
             });
         };
         service.trackEcommerceItem = function(transactionID, sku, name, category, price, quantity, currency) {
-            ga('require', 'ecommerce');
-            ga('ecommerce:addItem', {
-                'id': transactionID,        // Transaction ID. Required
-                'name': name,               // name
-                'sku': sku,                 // SKU
-                'category': category,       // category
-                'price': price,             // price
-                'quantity': quantity,       //quantity
-                'currency': currency
+            var trackers = ga.getAll() || [];
+
+            angular.forEach(trackers, function(tracker) {
+                ga(tracker.get('name') + '.require', 'ecommerce');
+                ga(tracker.get('name') + '.ecommerce:addItem', {
+                    'id': transactionID,        // Transaction ID. Required
+                    'name': name,               // name
+                    'sku': sku,                 // SKU
+                    'category': category,       // category
+                    'price': price,             // price
+                    'quantity': quantity,       //quantity
+                    'currency': currency
+                });
             });
         };
         service.pushTransaction = function () {
-            ga('ecommerce:send');
+            var trackers = ga.getAll() || [];
+
+            angular.forEach(trackers, function(tracker) {
+                ga(tracker.get('name') + '.ecommerce:send');
+            });
         }
 
         return service;
