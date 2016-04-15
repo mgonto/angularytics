@@ -1,6 +1,6 @@
 /**
  * The solution to tracking page views and events in a SPA with AngularJS
- * @version v0.4.0 - 2016-04-07
+ * @version v0.4.0 - 2016-04-15
  * @link https://github.com/mgonto/angularytics
  * @author Martin Gontovnikas <martin@gonto.com.ar>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -198,26 +198,26 @@
   }).factory('AngularyticsGoogleUniversalHandler', function () {
     var service = {};
     service.trackPageView = function (url) {
-      var trackers = ga.getAll() || [];
+      var trackers = ga.getAll ? ga.getAll() : [];
       angular.forEach(trackers, function (tracker) {
         ga(tracker.get('name') + '.set', 'page', url);
         ga(tracker.get('name') + '.send', 'pageview', url);
       });
     };
     service.trackEvent = function (category, action, opt_label, opt_value, opt_noninteraction) {
-      var trackers = ga.getAll() || [];
+      var trackers = ga.getAll ? ga.getAll() : [];
       angular.forEach(trackers, function (tracker) {
         ga(tracker.get('name') + '.send', 'event', category, action, opt_label, opt_value, { 'nonInteraction': opt_noninteraction });
       });
     };
     service.trackTiming = function (category, variable, value, opt_label) {
-      var trackers = ga.getAll() || [];
+      var trackers = ga.getAll ? ga.getAll() : [];
       angular.forEach(trackers, function (tracker) {
         ga(tracker.get('name') + '.send', 'timing', category, variable, value, opt_label);
       });
     };
     service.trackEcommerceTrans = function (transactionID, affiliation, total, tax, shipping, city, state, country, currency) {
-      var trackers = ga.getAll() || [];
+      var trackers = ga.getAll ? ga.getAll() : [];
       angular.forEach(trackers, function (tracker) {
         ga(tracker.get('name') + '.require', 'ecommerce');
         ga(tracker.get('name') + '.ecommerce:addTransaction', {
@@ -231,7 +231,7 @@
       });
     };
     service.trackEcommerceItem = function (transactionID, sku, name, category, price, quantity, currency) {
-      var trackers = ga.getAll() || [];
+      var trackers = ga.getAll ? ga.getAll() : [];
       angular.forEach(trackers, function (tracker) {
         ga(tracker.get('name') + '.require', 'ecommerce');
         ga(tracker.get('name') + '.ecommerce:addItem', {
@@ -246,7 +246,7 @@
       });
     };
     service.pushTransaction = function () {
-      var trackers = ga.getAll() || [];
+      var trackers = ga.getAll ? ga.getAll() : [];
       angular.forEach(trackers, function (tracker) {
         ga(tracker.get('name') + '.ecommerce:send');
       });
